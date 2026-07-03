@@ -1,0 +1,17 @@
+name: Discord Message
+
+on:
+  schedule:
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Envoyer le message
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content":"Comment ça va ?"}' \
+          ${{ secrets.WEBHOOK_URL }}
